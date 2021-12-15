@@ -1,1 +1,3 @@
 # ai_tetris_solver
+
+Tetris is a world famous puzzle game created in 1984. It has swept the world with playful puzzles and a steady curve of difficuly. The player must react to incoming randomly generated blocks and place them where they best see fit. In the case of many tetris boards, there is a ten wide and twenty high "board" which blocks can be placed on. The blocks can be rotated and orientated in 4 different directions. Once an entire row has been filled, the blocks on the bottom row dissapear, and all other blocks shift down one; this process is repeated if multiple rows are completed at once. The reward function varies depending on the game, but number of rows eliminated, total blocks placed, and time are metrics which will be used in this study.
