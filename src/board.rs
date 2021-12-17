@@ -1,12 +1,7 @@
+mod blocks;
+pub use blocks::print_blocks;
 
-pub struct Board {
-    HEIGHT: usize,
-    WIDTH: usize,
-}
+mod board_data_structure;
+pub use board_data_structure::Board;
 
-impl Board {
-    /// Constructor for Board Struct
-    pub fn new(height: usize, width: usize) -> Self {
-        Self { HEIGHT: height, WIDTH: width}
-    }
-}
+mod cell;

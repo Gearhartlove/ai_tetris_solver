@@ -1,5 +1,6 @@
-mod pieces;
+mod board;
+
 fn main() {
-    pieces::this_will_break::wont_work();
-    pieces::pieces_debug::debug();
+    let board = board::Board::new(10, 20);
+    println!("{}", board)
 }
