@@ -42,9 +42,10 @@ impl std::fmt::Display for Board {
         for cell in &self.CELLS {
             if cell.block == true {
                 // TODO: determine why this is returning cell instead of &str
-                output.push_str(cell)
+                output.push_str(cell.to_string().trim());
+                output.push_str("  ")
             } else {
-                output.push_str("0 ");
+                output.push_str("0  ");
             }
 
 
