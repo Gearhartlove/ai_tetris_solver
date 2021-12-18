@@ -38,13 +38,21 @@ impl Board {
 impl std::fmt::Display for Board {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let mut output = String::from("");
+        // assign cells to correct x, y positions on the board
         for cell in &self.CELLS {
-            output.push_str("0 ");
+            if cell.block == true {
+                // TODO: determine why this is returning cell instead of &str
+                output.push_str(cell)
+            } else {
+                output.push_str("0 ");
+            }
+
 
             if &self.WIDTH-1 == cell.X_POS {
                 output.push_str("\n");
             }
         }
+
         write!{f, "{}", output}
     }
 }
