@@ -1,0 +1,36 @@
+*board
+    [
+        HEIGHT
+        WIDTH
+        BlockInventory Vec<BlockType>
+        Cells Vec<Cell>
+        [
+            block = {false} or true
+            id = {unassigned} or Color
+        ]
+
+        fn new{width, height} // creates a board with desired width and height
+    [
+
+// Q: do I want to be explicit with the block permutations
+// A: no I don't want to do it; I want a general algorithm to rotate
+//    any shape I come up
+// A: be very explicit with the base shape and then make other shapes
+//    from that base shape
+*block
+    [
+        enum "block types"// types of block with
+        0 = empty
+        1 = full
+        T =
+            [ 0 1 0 ]
+            [ 1 1 1 ]
+            [ 0 0 0 ]
+    ]
+
+*board_actions
+    [
+        >fn place_block{&board} -> "updates the board" // place block one by one and print message if block placement not possible
+        fn rotate_block{&board, Block) -> Array of array of possible coordinates "set of coordinates for the block"
+    ]
+

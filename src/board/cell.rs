@@ -1,5 +1,5 @@
-use std::fmt::{Formatter, write};
-use crate::board::cell::Color::Unassigned;
+use std::fmt::{Formatter};
+//use crate::board::cell::Color::Unassigned;
 
 use rand::{
     distributions::{Distribution, Standard},
@@ -16,7 +16,7 @@ pub struct Cell {
 
 impl Cell {
     pub fn new(x: usize, y:usize) -> Self{
-        Self { X_POS: x, Y_POS: y, ID: rand::thread_rng().gen(), block: false}
+        Self { X_POS: x, Y_POS: y, ID: rand::thread_rng().gen(), block: true}
     }
 
     fn get_id(&self) -> &str {
