@@ -1,18 +1,23 @@
 use std::fmt::Formatter;
+ use crate::board::block::{block_factory, BlockType, Shape};
+// use crate::board::block::BlockType::Square;
 use crate::board::cell::Cell;
 
 pub struct Board {
-    HEIGHT: usize,
-    WIDTH: usize,
-    CELLS: Vec<Cell>,
+    height_const: usize,
+    width_const: usize,
+    cells_const: Vec<Cell>,
+    play_blocks: Vec<&'static dyn Shape>, //blocks included in the tetris game // dyn?
 }
 
 /// Foundational data structure to run Tetris
-
 impl Board {
     /// Constructor for Board Struct
     pub fn new(width: usize, height: usize) -> Self {
         let mut cells: Vec<Cell> = Vec::new();
+        let mut blocks: Vec<&dyn Shape> = vec![
+            block_factory(BlockType::T),
+            block_factory(BlockType::Square)];
 
         let mut y = 0;
         let mut x = 0;
@@ -30,7 +35,8 @@ impl Board {
                 x = 0;
             }
         }
-        Self { WIDTH: width, HEIGHT: height, CELLS: cells}
+        //Self { WIDTH: width, HEIGHT: height, CELLS: cells, BLOCKS: blocks}
+        Self {width_const: width, height_const: height, cells_const: cells, play_blocks: blocks}
     }
 }
 
@@ -39,7 +45,7 @@ impl std::fmt::Display for Board {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let mut output = String::from("");
         // assign cells to correct x, y positions on the board
-        for cell in &self.CELLS {
+        for cell in &self.cells_const {
             if cell.block == true {
                 // TODO: determine why this is returning cell instead of &str
                 output.push_str(cell.to_string().trim());
@@ -49,7 +55,7 @@ impl std::fmt::Display for Board {
             }
 
 
-            if &self.WIDTH-1 == cell.X_POS {
+            if &self.width_const-1 == cell.x_pos {
                 output.push_str("\n");
             }
         }

@@ -17,6 +17,7 @@
 //    any shape I come up
 // A: be very explicit with the base shape and then make other shapes
 //    from that base shape
+// Assumption: Shapes are place on the upper right corner by default
 *block
     [
         enum "block types"// types of block with

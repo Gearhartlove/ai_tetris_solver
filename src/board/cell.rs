@@ -8,19 +8,19 @@ use rand::{
 
 #[derive(Copy, Clone)]
 pub struct Cell {
-    pub X_POS: usize,
-    pub Y_POS: usize,
-    pub ID: Color,
+    pub x_pos: usize,
+    pub y_pos: usize,
+    pub id: Color,
     pub block: bool,
 }
 
 impl Cell {
     pub fn new(x: usize, y:usize) -> Self{
-        Self { X_POS: x, Y_POS: y, ID: rand::thread_rng().gen(), block: true}
+        Self { x_pos: x, y_pos: y, id: rand::thread_rng().gen(), block: true}
     }
 
     fn get_id(&self) -> &str {
-        match self.ID {
+        match self.id {
             Color::Green => "G",
             Color::Blue => "B",
             Color::Purple => "P",
