@@ -12,16 +12,15 @@ pub enum BlockType{
     Square,
 }
 
-//TODO "Trying to implement a way to restrict blocks in the tetris game to explicit blocks)\
-//       by making a factory which takes an enum and returns of a block of that type? ");
+/// BlockType -> Factory -> reference to block; used when describing the blocks allowed in the tetris
+/// game.
 pub fn block_factory(block_type: BlockType) -> &'static dyn Shape {
     match block_type {
         BlockType::Square => {
-            let s = &Square::new();
-            return s;
+           &Square{}
         },
         BlockType:: T => {
-            let s = &T::new();
+            &T{}
         },
         //BlockType:: Line => Box::new(L::new()),
         _ => panic!("Shape does not exist!")

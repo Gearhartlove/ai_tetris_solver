@@ -1,5 +1,4 @@
 use std::fmt::{Formatter};
-//use crate::board::cell::Color::Unassigned;
 
 use rand::{
     distributions::{Distribution, Standard},
@@ -8,15 +7,15 @@ use rand::{
 
 #[derive(Copy, Clone)]
 pub struct Cell {
-    pub x_pos: usize,
-    pub y_pos: usize,
+    pub x_pos: i8,
+    pub y_pos: i8,
     pub id: Color,
     pub block: bool,
 }
 
 impl Cell {
-    pub fn new(x: usize, y:usize) -> Self{
-        Self { x_pos: x, y_pos: y, id: rand::thread_rng().gen(), block: true}
+    pub fn new(x: i8, y: i8) -> Self{
+        Self { x_pos: x, y_pos: y, id: rand::thread_rng().gen(), block: false}
     }
 
     fn get_id(&self) -> &str {
@@ -28,6 +27,14 @@ impl Cell {
             Color::Yellow => "Y",
             _ => "X",
         }
+    }
+
+    pub fn set_cell_true(&mut self) {
+        self.block = true
+    }
+
+    pub fn set_cell_false(&mut self) {
+        self.block = false
     }
 }
 
