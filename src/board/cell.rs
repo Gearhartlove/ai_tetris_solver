@@ -4,18 +4,21 @@ use rand::{
     distributions::{Distribution, Standard},
     Rng,
 };
+use crate::board::block::Shape;
+use crate::board::BlockType;
 
-#[derive(Copy, Clone)]
+//#[derive(Copy, Clone)]
+#[derive(Clone)]
 pub struct Cell {
     pub x_pos: i8,
     pub y_pos: i8,
     pub id: Color,
-    pub block: bool,
+    pub block: Option<&'static dyn Shape>,
 }
 
 impl Cell {
     pub fn new(x: i8, y: i8) -> Self{
-        Self { x_pos: x, y_pos: y, id: rand::thread_rng().gen(), block: false}
+        Self { x_pos: x, y_pos: y, id: rand::thread_rng().gen(), block: None}
     }
 
     fn get_id(&self) -> &str {
@@ -29,13 +32,13 @@ impl Cell {
         }
     }
 
-    pub fn set_cell_true(&mut self) {
-        self.block = true
-    }
-
-    pub fn set_cell_false(&mut self) {
-        self.block = false
-    }
+    // pub fn set_cell_true(&mut self) {
+    //     self.block = true
+    // }
+    //
+    // pub fn set_cell_false(&mut self) {
+    //     self.block = false
+    // }
 }
 
 impl std::fmt::Display for Cell {

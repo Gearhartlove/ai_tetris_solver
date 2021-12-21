@@ -41,14 +41,14 @@ impl Board {
 
     // Note: need to make a cell getter eventually
     // method to set a cell to true
-    pub fn set_cell_true(&mut self, x: usize, y: usize) {
-        self.cells_const[x + y * self.width_const as usize].block = true;
-    }
-
-    // method to set a cell to true
-    pub fn set_cell_false(&mut self, x: usize, y: usize) {
-        self.cells_const[x + y * self.width_const as usize].block = false;
-    }
+    // pub fn set_cell_true(&mut self, x: usize, y: usize) {
+    //     self.cells_const[x + y * self.width_const as usize].block = true;
+    // }
+    //
+    // // method to set a cell to true
+    // pub fn set_cell_false(&mut self, x: usize, y: usize) {
+    //     self.cells_const[x + y * self.width_const as usize].block = false;
+    // }
 }
 
 /// Pretty printing to the Console
@@ -57,12 +57,13 @@ impl std::fmt::Display for Board {
         let mut output = String::from("");
         // assign cells to correct x, y positions on the board
         for cell in &self.cells_const {
-            if cell.block == true {
-                // TODO: determine why this is returning cell instead of &str
-                output.push_str(cell.to_string().trim());
-                output.push_str("  ")
-            } else {
-                output.push_str("0  ");
+            match cell.block {
+                Some(block) => {
+                        // TODO: determine why this is returning cell instead of &str
+                        output.push_str(cell.to_string().trim());
+                        output.push_str("  ")
+                }
+                None => output.push_str("0  ")
             }
 
 
