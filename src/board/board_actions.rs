@@ -1,5 +1,3 @@
-use crate::board::Board;
-use crate::board::BlockType;
 use crate::board::cell::Cell;
 //use crate::board::block::block_type;
 
