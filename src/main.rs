@@ -1,7 +1,8 @@
 mod board;
+use board::Board;
 
 fn main() {
-    let mut board = board::Board::new(10, 20);
-    // board.place_block(2, 0, Square{});
-    println!("{}", board);
+    // Create a board of desired size
+    // Run the AI to solve tetris
+    // ai_tetris_solver::run(Board::new(10,20));
 }

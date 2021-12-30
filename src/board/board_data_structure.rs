@@ -65,30 +65,30 @@ impl Board {
     // NOTE: out of bounds is not fixed by this issue ... need to address OOB issues too
     pub fn place_block(&self, x: usize, y: usize, block: &'static dyn Shape) {
         // check if block is placeable; if true statement
-        for mut add_y in 0..block.get_size() {
-            for mut add_x in 0..block.get_size() {
-                // don't consider if query is out of bounds
-                if !is_oob(x, y, add_x, add_y) {
-                    match self.cells[self.index(x + add_x, y + add_y)].block {
-                        None => ,
-                        Some(block) => panic!("Cannot place block,")
-                    }
-                    // x += 1;
-                }
-                n += 1;
-            }
-        }
+        // for mut add_y in 0..block.get_size() {
+        //     for mut add_x in 0..block.get_size() {
+        //         // don't consider if query is out of bounds
+        //         if !is_oob(x, y, add_x, add_y) {
+        //             match self.cells[self.index(x + add_x, y + add_y)].block {
+        //                 None => ,
+        //                 Some(block) => panic!("Cannot place block,")
+        //             }
+        //             // x += 1;
+        //         }
+        //         n += 1;
+        //     }
+        // }
 
         //place the block on the board
-        match self.cells[self.index(x,y)].block {
-            // don't allow block to be placed on the board if there is already a block there
-            None() => println!("Can't place block at {} {}, block already present", x, y),
-            // place the block onto the board
-            //Q: can I change the board because it is not &mut self?
-            Some(block) => {
-
-            },
-        }
+        // match self.cells[self.index(x,y)].block {
+        //     // don't allow block to be placed on the board if there is already a block there
+        //     None => println!("Can't place block at {} {}, block already present", x, y),
+        //     // place the block onto the board
+        //     //Q: can I change the board because it is not &mut self?
+        //     Some(block) => {
+        //
+        //     },
+        // }
     }
 
     // Note: need to make a cell getter eventually
