@@ -4,7 +4,7 @@ use crate::board::cell::Cell;
 
 pub struct Board {
     height_const: i8,
-    width_const: i8,
+    pub width_const: i8,
     cells: Vec<Cell>,
     play_blocks: Vec<&'static dyn Shape>, //blocks included in the tetris game // dyn?
 }
@@ -93,9 +93,9 @@ impl Board {
 
     // Note: need to make a cell getter eventually
     // method to set a cell to true
-    fn set_cell_block(&mut self, x: usize, y: usize, block: &'static dyn Shape) {
-        self.cells[index(x,y, self.width_const as usize)].block = Some(block);
-    }
+    // fn set_cell_block(&mut self, x: usize, y: usize, block: &'static dyn Shape) {
+    //     self.cells[index(x,y, self.width_const as usize)].block = Some(block);
+    // }
 
     // // method to set a cell to true
     // pub fn set_cell_false(&mut self, x: usize, y: usize) {
@@ -104,11 +104,15 @@ impl Board {
 
     // gets an index of the board (cleaner syntax function)
 
+    pub fn get_cell(&self, x: usize, y: usize, width: usize) -> Result<&Cell, String>{
+        match self.cells.get(x + y * width) {
+            Some(cell) => Ok(cell),
+            None => Err(String::from("the board index does not exist")), // add coords
+        }
+    }
 }
 
-fn index(x: usize, y: usize, width: usize) -> usize {
-    x + y * width
-}
+
 
 /// Pretty printing to the Console
 impl std::fmt::Display for Board {
