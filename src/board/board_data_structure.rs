@@ -104,8 +104,8 @@ impl Board {
 
     // gets an index of the board (cleaner syntax function)
 
-    pub fn get_cell(&self, x: usize, y: usize, width: usize) -> Result<&Cell, String>{
-        match self.cells.get(x + y * width) {
+    pub fn get_cell(&mut self, x: usize, y: usize) -> Result<&mut Cell, String>{
+        match self.cells.get_mut(x + y * self.width_const as usize) {
             Some(cell) => Ok(cell),
             None => Err(String::from("the board index does not exist")), // add coords
         }
@@ -120,13 +120,19 @@ impl std::fmt::Display for Board {
         let mut output = String::from("");
         // assign cells to correct x, y positions on the board
         for cell in &self.cells {
-            match cell.block {
-                Some(block) => {
-                        // TODO: determine why this is returning cell instead of &str
-                        output.push_str(cell.to_string().trim());
-                        output.push_str("  ")
+            match cell.block_bool {
+                // for color functionality later
+                // Some(block) => {
+                //         output.push_str(cell.to_string().trim());
+                //         output.push_str("  ")
+                // }
+
+                // temporary push "1  " to the console for debugging purposes
+                // idea: create a debugging version of the board as opposed to color
+                true => {
+                    output.push_str("1  ")
                 }
-                None => output.push_str("0  ")
+                false => output.push_str("0  ")
             }
 
 

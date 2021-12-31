@@ -10,14 +10,16 @@ pub struct Cell {
     pub y_pos: i8,
     // pub id: Color,
     pub block: Option<&'static dyn Shape>,
+    pub block_bool: bool,
 }
 
 impl Cell {
     pub fn new(x: i8, y: i8) -> Self{
-        Self { x_pos: x, y_pos: y, block: None}
+        Self { x_pos: x, y_pos: y, block: None, block_bool: false}
     }
 
     // gets the color of the block for the print out
+    // TODO: debug this, write tests
     fn get_id(&self) -> &str {
         match self.block {
             None => "0",
@@ -29,18 +31,12 @@ impl Cell {
                 Color::Yellow => "Y",
                 _ => "X",
             }
-        // match self.block {
-            // Color::Green => "G",
-            // Color::Blue => "B",
-            // Color::Purple => "P",
-            // Color::Red => "R",
-            // Color::Yellow => "Y",
-            // _ => "X",
         }
     }
 
-    pub fn set_cell_true(&mut self, block: &'static dyn Shape) {
-        self.block = Some(block);
+    pub fn set_cell_true(&mut self) {
+        //self.block = Some(block);
+        self.block_bool = true;
     }
 
     // pub fn set_cell_false(&mut self) {
