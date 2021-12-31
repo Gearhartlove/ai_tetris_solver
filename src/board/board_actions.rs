@@ -16,15 +16,17 @@ mod tests {
     use crate::Board;
     use super::*;
 
+    /// Test if one block can be added to a board
     #[test]
     fn place_simple_block() {
         let mut board = Board::new(1,1);
         let cell_to_change = board.get_cell(0,0).unwrap();
         place_block(cell_to_change);
 
-        assert_eq!("1  \n", board.to_string());
+        assert_eq!("1  \n", board.debug_string());
     }
 
+    /// Test if multiple blocks can be added to a board
     #[test]
     fn place_multiple_blocks() {
         let mut board = Board::new(3,3);
@@ -34,7 +36,7 @@ mod tests {
         place_block(cell_to_change_2);
 
         assert_eq!(
-            "0  0  0  \n0  1  1  \n0  0  0  \n", board.to_string()
+            "0  0  0  \n0  1  1  \n0  0  0  \n", board.debug_string()
         )
     }
 }

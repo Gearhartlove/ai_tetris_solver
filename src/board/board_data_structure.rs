@@ -110,29 +110,43 @@ impl Board {
             None => Err(String::from("the board index does not exist")), // add coords
         }
     }
+
+    // debug printout of board for testing purposes
+    pub fn debug_string(&self) -> String {
+        let mut output = String::from("");
+        // assign cells to correct x, y positions on the board
+        for cell in &self.cells {
+            match cell.block_bool {
+                true => {
+                    output.push_str("1  ")
+                }
+                false => output.push_str("0  ")
+            }
+
+
+            if &self.width_const-1 == cell.x_pos {
+                output.push_str("\n");
+            }
+        }
+        output
+    }
 }
 
 
 
+// TODO debug this to see if the shapes and the color are working correctly
 /// Pretty printing to the Console
 impl std::fmt::Display for Board {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let mut output = String::from("");
         // assign cells to correct x, y positions on the board
         for cell in &self.cells {
-            match cell.block_bool {
-                // for color functionality later
-                // Some(block) => {
-                //         output.push_str(cell.to_string().trim());
-                //         output.push_str("  ")
-                // }
-
-                // temporary push "1  " to the console for debugging purposes
-                // idea: create a debugging version of the board as opposed to color
-                true => {
-                    output.push_str("1  ")
+            match cell.block {
+                Some(block) => {
+                        output.push_str(cell.to_string().trim());
+                        output.push_str("  ")
                 }
-                false => output.push_str("0  ")
+                None => output.push_str("0  ")
             }
 
 
